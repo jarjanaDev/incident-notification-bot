@@ -11,8 +11,9 @@ class Settings(BaseSettings):
     default_group: str = Field(default="it-team")
     escalation_group: str = Field(default="management")
 
-    api_host: str = Field(default="0.0.0.0")
+    api_host: str = Field(default="127.0.0.1")
     api_port: int = Field(default=8000)
+    api_key: str = Field(default="")
 
     log_file: str = Field(default="logs/audit.log")
 

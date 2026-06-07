@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from typing import List, Optional
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from config.settings import settings
 from utils.logger import get_logger
@@ -29,7 +29,10 @@ def send_maintenance_notification(
     recipient_group: Optional[str] = None,
     additional_recipients: Optional[List[str]] = None,
 ) -> bool:
-    env = Environment(loader=FileSystemLoader("templates"))
+    env = Environment(
+        loader=FileSystemLoader("templates"),
+        autoescape=select_autoescape(["html"]),
+    )
     template = env.get_template("maintenance.html")
 
     html_body = template.render(
