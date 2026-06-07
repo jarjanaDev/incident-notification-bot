@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+    .container { max-width: 680px; margin: auto; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header { background: #27ae60; color: #fff; padding: 24px 32px; }
+    .header h1 { margin: 0; font-size: 20px; letter-spacing: 1px; }
+    .header .badge { display: inline-block; background: rgba(255,255,255,0.25); padding: 4px 12px; border-radius: 20px; font-size: 13px; margin-top: 8px; }
+    .body { padding: 28px 32px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; vertical-align: top; }
+    td:first-child { width: 40%; font-weight: bold; color: #555; white-space: nowrap; }
+    .section-title { font-size: 13px; font-weight: bold; color: #888; letter-spacing: 1px; text-transform: uppercase; margin: 20px 0 8px; border-top: 2px solid #eee; padding-top: 16px; }
+    .rca-box { background: #eafaf1; border-left: 4px solid #27ae60; padding: 12px 16px; font-size: 14px; margin-bottom: 16px; border-radius: 0 4px 4px 0; }
+    .followup-box { background: #ebf5fb; border-left: 4px solid #2980b9; padding: 12px 16px; font-size: 14px; border-radius: 0 4px 4px 0; }
+    .footer { background: #f8f9fa; padding: 16px 32px; font-size: 12px; color: #888; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>&#x2705; INCIDENT RESOLVED</h1>
+      <div class="badge">All Systems Operational</div>
+    </div>
+    <div class="body">
+      <p style="color:#555;font-size:14px;">Dear Stakeholders,</p>
+      <p style="color:#555;font-size:14px;">We are pleased to inform you that the incident has been resolved.</p>
+
+      <div class="section-title">Resolution Summary</div>
+      <table>
+        <tr><td>Incident ID</td><td>{{ incident_id }}</td></tr>
+        <tr><td>Severity</td><td>{{ severity }}</td></tr>
+        <tr><td>Affected System</td><td>{{ affected_system }}</td></tr>
+        <tr><td>Resolved At</td><td><strong>{{ resolved_at }}</strong></td></tr>
+        <tr><td>Total Duration</td><td><strong>{{ duration }}</strong></td></tr>
+        {% if incident_commander %}
+        <tr><td>Incident Commander</td><td>{{ incident_commander }}</td></tr>
+        {% endif %}
+      </table>
+
+      <div class="section-title">Resolution Details</div>
+      <div class="rca-box">{{ resolution_summary }}</div>
+
+      <div class="section-title">Root Cause</div>
+      <div class="rca-box">{{ root_cause }}</div>
+
+      {% if follow_up_actions %}
+      <div class="section-title">Follow-up Actions</div>
+      <div class="followup-box">{{ follow_up_actions }}</div>
+      {% endif %}
+
+      <p style="font-size:13px;color:#888;margin-top:24px;">A full post-incident review (PIR) will be shared within 48 hours.</p>
+    </div>
+    <div class="footer">
+      Generated: {{ timestamp }} &nbsp;|&nbsp; Incident Notification Bot
+    </div>
+  </div>
+</body>
+</html>

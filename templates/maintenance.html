@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+    .container { max-width: 680px; margin: auto; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header { background: #2980b9; color: #fff; padding: 24px 32px; }
+    .header h1 { margin: 0; font-size: 20px; letter-spacing: 1px; }
+    .header .badge { display: inline-block; background: rgba(255,255,255,0.25); padding: 4px 12px; border-radius: 20px; font-size: 13px; margin-top: 8px; }
+    .body { padding: 28px 32px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; vertical-align: top; }
+    td:first-child { width: 40%; font-weight: bold; color: #555; white-space: nowrap; }
+    .section-title { font-size: 13px; font-weight: bold; color: #888; letter-spacing: 1px; text-transform: uppercase; margin: 20px 0 8px; border-top: 2px solid #eee; padding-top: 16px; }
+    .info-box { background: #ebf5fb; border-left: 4px solid #2980b9; padding: 12px 16px; font-size: 14px; margin-bottom: 16px; border-radius: 0 4px 4px 0; }
+    .rollback-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 12px 16px; font-size: 14px; border-radius: 0 4px 4px 0; }
+    .footer { background: #f8f9fa; padding: 16px 32px; font-size: 12px; color: #888; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>&#x1F527; SCHEDULED MAINTENANCE</h1>
+      <div class="badge">Planned Downtime</div>
+    </div>
+    <div class="body">
+      <p style="color:#555;font-size:14px;">Dear Stakeholders,</p>
+      <p style="color:#555;font-size:14px;">Please be advised of the following scheduled maintenance window:</p>
+
+      <div class="section-title">Maintenance Details</div>
+      <table>
+        <tr><td>Maintenance ID</td><td>{{ maintenance_id }}</td></tr>
+        <tr><td>Affected Systems</td><td>{{ affected_systems | join(', ') }}</td></tr>
+        <tr><td>Scheduled Start</td><td><strong>{{ scheduled_start }}</strong></td></tr>
+        <tr><td>Scheduled End</td><td><strong>{{ scheduled_end }}</strong></td></tr>
+        <tr><td>Impact</td><td>{{ impact }}</td></tr>
+        {% if lead_engineer %}
+        <tr><td>Lead Engineer</td><td>{{ lead_engineer }}</td></tr>
+        {% endif %}
+      </table>
+
+      <div class="section-title">Description</div>
+      <div class="info-box">{{ description }}</div>
+
+      {% if rollback_plan %}
+      <div class="section-title">Rollback Plan</div>
+      <div class="rollback-box">{{ rollback_plan }}</div>
+      {% endif %}
+
+      <p style="font-size:13px;color:#888;margin-top:24px;">A resolution notice will be sent once maintenance is complete.</p>
+    </div>
+    <div class="footer">
+      Generated: {{ timestamp }} &nbsp;|&nbsp; Incident Notification Bot
+    </div>
+  </div>
+</body>
+</html>

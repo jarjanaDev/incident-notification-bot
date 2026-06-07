@@ -1,0 +1,19 @@
+{
+    "it-team": [
+        "it-team@company.com",
+        "ops@company.com"
+    ],
+    "management": [
+        "manager@company.com",
+        "director@company.com"
+    ],
+    "developers": [
+        "dev-team@company.com"
+    ],
+    "all-stakeholders": [
+        "it-team@company.com",
+        "ops@company.com",
+        "manager@company.com",
+        "stakeholders@company.com"
+    ]
+}
